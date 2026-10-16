@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Maria Elna Güell Jorba · Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--card:#fff;--ink:#12305f;--muted:#4b5a86;--accent:#6c63c7;--line:#d5dcf2;--hero1:#a9c8f0;--hero2:#c9b8ec;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1530;--card:#18204a;--ink:#e6ecff;--muted:#a9b6e6;--accent:#a99cff;--line:#2c3770;--hero1:#233a73;--hero2:#3b2f75}}
+:root[data-theme="dark"]{--bg:#0f1530;--card:#18204a;--ink:#e6ecff;--muted:#a9b6e6;--accent:#a99cff;--line:#2c3770;--hero1:#233a73;--hero2:#3b2f75}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.6}
+h1,h2,h3{font-family:Lora,Georgia,serif;margin:0}
+header{text-align:center;padding:48px 20px 40px;background:linear-gradient(160deg,var(--hero1),var(--hero2));border-bottom:6px solid var(--accent);position:relative;overflow:hidden}
+header::before,header::after{content:"✦";position:absolute;color:#fff;opacity:.7;font-size:28px;animation:tw 3s ease-in-out infinite}
+header::before{left:12%;top:30%}header::after{right:10%;top:18%;font-size:20px;animation-delay:1.5s}
+@keyframes tw{50%{opacity:.2;transform:scale(.8)}}
+.avatar{width:140px;height:140px;border-radius:50%;margin:0 auto 14px;border:3px solid var(--accent);display:grid;place-items:center;font-size:60px;background:radial-gradient(circle,#7fd6f5,#4aa4e8);overflow:hidden}
+.avatar img,.me img{width:100%;height:100%;object-fit:cover}
+h1{font-size:clamp(28px,5vw,44px)}
+.roles{color:var(--accent);font-weight:600;letter-spacing:.04em;margin:8px 0 0;font-size:clamp(13px,2.2vw,19px)}
+nav{display:flex;flex-wrap:wrap;gap:6px 26px;justify-content:space-evenly;max-width:1100px;margin:0 auto;padding:22px 16px 6px}
+nav button{font:600 13px Inter,sans-serif;letter-spacing:.04em;text-transform:uppercase;padding:8px 2px;border:0;border-bottom:2px solid transparent;background:none;color:var(--accent);opacity:.75;cursor:pointer;transition:all .25s}
+nav button:hover{opacity:1;transform:translateY(-2px)}
+nav button[aria-selected="true"]{color:var(--ink);opacity:1;border-color:var(--ink)}
+main{max-width:1200px;margin:0 auto;padding:20px 16px 60px}
+h2.t{text-align:center;font-size:clamp(26px,4vw,38px);margin:34px 0 20px;font-variant:small-caps}
+.fade{animation:up .6s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0)*80ms)}
+@keyframes up{from{opacity:0;transform:translateY(22px)}}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px}
+.card{background:none;border:0;padding:0;cursor:pointer;text-align:center;color:var(--ink);font:inherit}
+.card .cv{border-radius:12px;overflow:hidden;border:1px solid var(--line);aspect-ratio:var(--r,4/3);transition:transform .35s,box-shadow .35s}
+.card:hover .cv{transform:translateY(-6px);box-shadow:0 14px 28px rgba(108,99,199,.25)}
+.card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.card:hover img{transform:scale(1.07)}
+.card .lb{display:block;margin-top:10px;font-weight:600;font-size:14px;letter-spacing:.06em;font-variant:small-caps;color:var(--accent)}
+.grid{columns:3 260px;column-gap:14px}
+.tile{break-inside:avoid;margin:0 0 14px;border-radius:12px;overflow:hidden;background:var(--card);border:1px solid var(--line)}
+.tile img{display:block;width:100%}
+.ph{width:100%;height:100%;min-height:140px;aspect-ratio:var(--r,4/3);display:grid;place-items:center;text-align:center;padding:12px;font-size:13px;color:var(--muted);background:linear-gradient(135deg,var(--hero1),var(--hero2))}
+.cap{padding:8px 12px;font-size:13px;color:var(--muted)}
+.back{font:600 13px Inter,sans-serif;background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:8px 16px;cursor:pointer;margin:14px 0 0}
+.desc{max-width:720px;margin:0 auto 24px;text-align:center;color:var(--muted)}
+.slides{position:relative;height:clamp(200px,38vw,380px);border-radius:14px;overflow:hidden;margin-bottom:34px}
+.slides>div{position:absolute;inset:0;opacity:0;transition:opacity 1.2s}
+.slides>div.on{opacity:1}
+.slides img{width:100%;height:100%;object-fit:cover;display:block}
+.slides .ph{min-height:0;aspect-ratio:auto;height:100%}
+.dots{position:absolute;bottom:12px;left:0;right:0;display:flex;gap:8px;justify-content:center;z-index:2}
+.dots i{width:9px;height:9px;border-radius:50%;background:#fff;opacity:.5;transition:.3s}
+.dots i.on{opacity:1;transform:scale(1.3)}
+.about{display:flex;gap:32px;align-items:center;max-width:900px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.me{width:200px;height:200px;border-radius:50%;overflow:hidden;flex:none;display:grid;place-items:center;font-size:80px;background:radial-gradient(circle,#7fd6f5,#4aa4e8)}
+.about>div:last-child{flex:1;min-width:260px}
+.about a{color:var(--ink);font-weight:600}
+.cvbtn{display:inline-block;margin-top:18px;padding:12px 28px;border-radius:30px 12px 30px 14px;background:linear-gradient(120deg,var(--hero1),var(--hero2));text-decoration:none;font-weight:600;letter-spacing:.05em;font-size:13px;text-transform:uppercase;transition:transform .3s}
+.cvbtn:hover{transform:rotate(-2deg) scale(1.05)}
+.box{max-width:720px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+.box a{color:var(--accent);font-weight:600}
+footer{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;max-width:1100px;margin:0 auto;border-top:1px solid var(--line);color:var(--ink);font-size:13px;padding:22px 16px}
+.lg{width:52px;height:52px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font:700 18px Lora,serif;overflow:hidden}
+.lg img{width:100%;height:100%;object-fit:cover}
+.soc{display:flex;gap:14px}.soc a{color:var(--ink);transition:transform .25s,color .25s}.soc a:hover{color:var(--accent);transform:translateY(-3px)}
+.soc svg{width:28px;height:28px;display:block}
+@media(max-width:640px){footer{justify-content:center;text-align:center}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="avatar" id="av">🎨</div>
+  <h1>Maria Elna Güell Jorba</h1>
+  <p class="roles">Visual Dev | Concept Artist | 3D Modeler &amp; Texturer | Lighting Artist</p>
+</header>
+<nav id="nav" role="tablist"></nav>
+<main><section id="view"></section></main>
+<footer>
+<div class="lg"><img src="img/logo.png" alt="" onerror="this.replaceWith('MG')"></div>
+<div>© 2026 Maria Elna Güell Jorba / contact@elteu.art</div>
+<div class="soc">
+<a href="https://www.linkedin.com/" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><rect width="24" height="24" rx="5" fill="currentColor"/><circle cx="7.2" cy="7.3" r="1.7" fill="var(--bg)"/><path fill="var(--bg)" d="M5.9 10h2.6v8H5.9zM10.5 10h2.5v1.1c.5-.8 1.4-1.3 2.6-1.3 2.4 0 3 1.5 3 3.7V18h-2.6v-4.2c0-1-.3-1.7-1.3-1.7s-1.5.7-1.5 1.7V18h-2.7z"/></svg></a>
+<a href="https://www.artstation.com/" aria-label="ArtStation"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M1 17.2h10.6l1.6 2.8H2.6zM9.2 4l9.4 16h4l-1.6-2.8L12.7 4zM7.7 6.6 1 17.2h5.6l3.2-5.4z"/></svg></a>
+<a href="https://www.instagram.com/" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.7" cy="6.3" r=".6" fill="currentColor"/></svg></a>
+</div>
+</footer>
+<script>
+/* ===== EDITA AQUÍ =====
+Cada pestanya té "cats" (My Project: categories) i "projects" (Projects).
+Cada element = { t: títol, c: portada, r: proporció, d: descripció, im: [[fitxer, peu, proporció],...] } */
+const EMAIL="contact@elteu.art", LINKEDIN="https://www.linkedin.com/";
+const AVATAR="img/avatar.png", ME="img/about.jpg", CV="img/cv.pdf";
+const SLIDES=["img/slide1.jpg","img/slide2.jpg","img/slide3.jpg","img/slide4.jpg","img/slide5.jpg"]; // imatges que van canviant a About
+const HELLO=["Sóc Maria Elna, Visual Dev, Concept Artist, 3D Modeler & Texturer i Lighting Artist.","M'encanten els mons de fantasia, les ciutats imaginàries i la llum.","Disfruto treballant en animació i videojocs, tant en projectes 2D com 3D.","La meva missió és explicar històries a través de l'art!"];
+const COMMISSIONS="Obro comissions de character design, il·lustració i concept art. Escriu-me amb el que tens en ment i et respondré amb pressupost i terminis.";
+const slug=n=>n.toLowerCase().replace(/\W+/g,'-');
+const P=(n,r,k=3)=>({t:n,c:`img/${slug(n)}/cover.jpg`,r,d:"Escriu aquí la descripció.",im:Array.from({length:k},(_,i)=>[`img/${slug(n)}/${i+1}.jpg`,`${n} ${i+1}`,i%2?"4/3":"3/4"])});
+const SECTIONS={
+ "Concept Art Portfolio":{cats:[P("Character Design","4/3"),P("Environment","4/3"),P("Prop","4/3"),P("Key Arts","4/3")],projects:[P("Project One","3/4"),P("Project Two","3/4"),P("Project Three","3/4"),P("Project Four","3/4")]},
+ "3D Modeling / Texturing":{cats:[],projects:[P("Model One","1/1"),P("Model Two","1/1")]},
+ "Lighting":{cats:[],projects:[P("Lighting One","16/9"),P("Lighting Two","16/9")]},
+ "2D Animation / FX":{cats:[],projects:[P("FX One","1/1"),P("FX Two","1/1")]},
+ "Storyboards":{cats:[],projects:[P("Storyboard One","16/9"),P("Storyboard Two","16/9")]}
+};
+/* ======================= */
+const nav=document.getElementById("nav"),view=document.getElementById("view");
+const tabs=["About/CV","Commissions",...Object.keys(SECTIONS)];
+let cur="About/CV",sel=null,timer;
+const fb=(s,t,r)=>`onerror="this.outerHTML='<div class=ph style=--r:${r}>${t}<br>(afegeix ${s})</div>'"`;
+const cards=(list,k)=>`<div class="cards">`+list.map((p,i)=>`<button class="card fade" style="--i:${i}" data-k="${k}" data-p="${i}"><div class="cv" style="--r:${p.r}"><img src="${p.c}" alt="${p.t}" loading="lazy" ${fb(p.c,p.t,p.r)}></div><span class="lb">${p.t}</span></button>`).join("")+`</div>`;
+function render(){
+ clearInterval(timer);
+ nav.innerHTML=tabs.map(t=>`<button role="tab" aria-selected="${t===cur}" data-t="${t}">${t==="About/CV"?"⌂ ":""}${t}</button>`).join("");
+ if(cur==="About/CV"){
+  view.innerHTML=`<div class="slides fade">`+SLIDES.map((s,i)=>`<div class="${i?"":"on"}"><img src="${s}" alt="" ${fb(s,"Slide "+(i+1),"16/9")}></div>`).join("")+`<div class="dots">${SLIDES.map((_,i)=>`<i class="${i?"":"on"}"></i>`).join("")}</div></div>
+  <div class="about fade" style="--i:2"><div class="me" id="me">🎨</div><div><h2>Hello!</h2><p>${HELLO.join("<br>")}</p><p><b>Per a qualsevol consulta, escriu-me a <a href="mailto:${EMAIL}">${EMAIL}</a> o per <a href="${LINKEDIN}">LinkedIn</a>.</b></p><p>Gràcies per passar-te per aquí! :)</p><a class="cvbtn" href="${CV}">Download Resume / CV</a></div></div>`;
+  const im=new Image();im.onload=()=>{const m=document.getElementById("me");m.innerHTML="";m.appendChild(im)};im.src=ME;
+  const sl=[...view.querySelectorAll(".slides>div")],dt=[...view.querySelectorAll(".dots i")];let n=0;
+  timer=setInterval(()=>{sl[n].classList.remove("on");dt[n].classList.remove("on");n=(n+1)%sl.length;sl[n].classList.add("on");dt[n].classList.add("on")},4000);
+ }else if(cur==="Commissions") view.innerHTML=`<div class="box fade"><h3>Commissions</h3><p>${COMMISSIONS}</p><p><a href="mailto:${EMAIL}">${EMAIL}</a></p></div>`;
+ else if(sel){const p=SECTIONS[cur][sel[0]][sel[1]];
+  view.innerHTML=`<button class="back" id="back">← Tornar</button><h2 class="t">${p.t}</h2><p class="desc">${p.d||""}</p><div class="grid">`+p.im.map(([s,t,r],i)=>`<figure class="tile fade" style="--i:${i}"><img src="${s}" alt="${t}" loading="lazy" ${fb(s,t,r)}><figcaption class="cap">${t}</figcaption></figure>`).join("")+`</div>`;
+  document.getElementById("back").onclick=()=>{sel=null;render()};
+ }else{const S=SECTIONS[cur];
+  view.innerHTML=(S.cats.length?`<h2 class="t">My Project</h2>`+cards(S.cats,"cats"):"")+(S.projects.length?`<h2 class="t">Projects</h2>`+cards(S.projects,"projects"):"");}
+}
+nav.onclick=e=>{const b=e.target.closest("button");if(b){cur=b.dataset.t;sel=null;render()}};
+view.onclick=e=>{const c=e.target.closest(".card");if(c){sel=[c.dataset.k,+c.dataset.p];render();scrollTo(0,0)}};
+const a=new Image();a.onload=()=>{const v=document.getElementById("av");v.innerHTML="";v.appendChild(a)};a.src=AVATAR;
+render();
+</script>
+</body>
+</html>
